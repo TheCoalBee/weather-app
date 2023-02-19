@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    padding:0;
+    margin:0;
+    background-color: #443C68;
+}
+
+@media (min-width: 800px) {
+    #main {
+        display:flex;
+        flex-direction: row;
+    }
+}
+
+#primary-info {
+    flex:1;
+    height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.91);
+}
+
+#search-bar {
+    margin:25px 0;
+    display:flex;
+    border-radius:35px;
+    position:fixed;
+    background: rgba(99, 89, 133, 0.5);
+    top:0;
+    -webkit-backdrop-filter: blur(2px);
+    z-index:1;
+    width:30%;
+    transition: width 1s ease;
+    transition-delay: 0.5s;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.75);
+}
+
+
+#search-bar:hover, #search-bar input[type="text"] {
+    width:75%;
+    transition:all 0.1s ease;
+    transition-delay: 0s;
+}
+
+#search-bar input[type="text"] {
+    padding:10px 15px;
+    flex:1;
+    font-size:16px;
+    background-color: transparent;
+    border:2px solid #fff;
+    border-radius:25px 0 0 25px;
+    outline:none;
+    color:white;
+}
+
+#search-bar input[type="submit"] {
+    padding:10px 15px;
+    background-color: #fff;
+    font-size:16px;
+    border:none;
+    border-radius:0 25px 25px 0;
+}
+
+#location-info {
+    display:flex;
+    gap:1rem;
+    margin-bottom:10px;
+}
+
+#location-name {
+    font-size:36px;
+    font-weight:normal;
+}
+#location-region {
+    font-weight:lighter;
+    font-size:36px;
+}
+
+#current-temp:hover {
+    cursor:pointer;
+    scale:1.1;
+}
+#current-temp {
+    text-align: center;
+    font-size:10rem;
+    transition: 0.3s ease all;
+    background-color: transparent;
+}
+#condition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:15px;
+}
+
+#current-condition {
+    font-size:28px;
+    text-align: center;
+    margin-right:1rem;
+}
+#current-condition-icon {
+    font-size:24px;
+}
+#current-feels-like {
+    font-size:20px;
+    text-align: center;
+}
+
+
+.fahrenheit:hover::after {
+    content: " F"
+}
+.celsius:hover::after {
+    content: " C"
+}
+
+
+
+
+#secondary-info {
+    flex:1;
+    height:100vh;
+    background-color: #393053;
+}
