@@ -11,6 +11,7 @@ const currentTemp = document.getElementById('current-temp');
 const currentCondition = document.getElementById('current-condition');
 const currentConditionIcon = document.getElementById('current-condition-icon');
 const currentFeelsLike = document.getElementById('current-feels-like');
+const tableInfo = document.getElementById('info-table');
 
 let currentLocation = {};
 
@@ -20,17 +21,19 @@ function getLocationInfo(city) {
         .then((response) => {return response.json()})
         .then((data) => {setCurrentLocation(data)})
         .catch((error) => {
+            console.log(error);
             locationName.textContent = "Location not found. Please try again";
-        })
-        .catch((error) => {console.log(error)});
+        });
     });
 }
 
 function setCurrentLocation(data) {
     currentLocation = data;
     search.value = "";
-    populateDOM()
+    populateDOM();
 }
+
+
 
 function populateDOM() {
     // Adjust text content
@@ -43,7 +46,9 @@ function populateDOM() {
     currentCondition.textContent = currentLocation.current.condition.text;
     currentConditionIcon.src = currentLocation.current.condition.icon;
     currentFeelsLike.textContent = "Feels like: " + currentLocation.current.feelslike_f + "° F";
-    setConditionIcon()
+    setConditionIcon();
+    fillTable();
+
 }
 
 function toggleDegrees() {
@@ -67,6 +72,7 @@ submit.addEventListener('click', async (e) => {
     if (search.value !== "") {
         loadingInfo();
         let location = await getLocationInfo(search.value);
+        setCurrentLocation(location);
         // Update Dom
         populateDOM();
     }
@@ -107,4 +113,21 @@ function loadingInfo() {
     currentCondition.textContent = ""
     currentConditionIcon.classList = "";
     currentFeelsLike.textContent = "";
+}
+
+function fillTable() {
+    tableInfo.innerHTML = "";
+    for (property in currentLocation.current) {
+        if (property != "condition") {
+            const newRow = document.createElement('tr');
+            const label = document.createElement('td');
+            const data = document.createElement('td');
+    
+                label.textContent = property;
+                data.textContent = currentLocation.current[property];
+        
+            newRow.append(label, data);
+            tableInfo.append(newRow);
+        }
+    }
 }
